@@ -1,3 +1,4 @@
+#include <cstring>
 #include <wilkins/wilkins.hpp>
 
 #include <diy/mpi/communicator.hpp>
