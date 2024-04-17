@@ -3,6 +3,8 @@ cmake_minimum_required      (VERSION 3.9)
 
 option                      (lowfive                   "Build Wilkins with Lowfive"         ON)
 option                      (wilkins_python            "Build Wilkins with python bindings" ON)
+option                      (wilkins_examples          "Build Wilkins examples"             OFF)
+option                      (wilkins_tests             "Build Wilkins tests"                OFF)
 
 set                         (CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -101,7 +103,9 @@ set                         (libraries
 
 # subdirectories
 add_subdirectory            (src)
-add_subdirectory            (examples)
+if                          (wilkins_examples)
+    add_subdirectory        (examples)
+endif                       (wilkins_examples)
 
 #python bindings
 if                          (wilkins_python)
@@ -110,6 +114,8 @@ if                          (wilkins_python)
 endif                       (wilkins_python)
 
 #testing
-enable_testing              ()
-include                     (CTest)
-add_subdirectory            (tests)
+if                          (wilkins_tests)
+    enable_testing          ()
+    include                 (CTest)
+    add_subdirectory        (tests)
+endif                       (wilkins_tests)
